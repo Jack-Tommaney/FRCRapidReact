@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.Climber.RotateCaneToBar;
 import frc.robot.commands.Drive.DriveDistance;
 import frc.robot.commands.Drive.ToggleIdleMode;
-import frc.robot.commands.Drive.TurnAngle;
+import frc.robot.commands.Drive.MotorTurnAngle;
 import frc.robot.commands.Intake.LowerIntake;
 import frc.robot.subsystems.Auto;
 import frc.robot.testingdashboard.TestingDashboard;
@@ -46,14 +46,10 @@ public class ShootTwiceAndCrossLine extends SequentialCommandGroup {
       new RotateCaneToBar(-0.3, true),
       new ShootBallsHighTimed(),
       new DriveDistance((-AUTO_DRIVE_DIST / 4), AUTO_DRIVE_DIST, true),
-      new TurnAngle(AUTO_TURN_ANGLE, 0.6, true),
-      new Wait(0.5, true),
-      new ToggleIdleMode(IdleMode.kCoast),
+      new MotorTurnAngle(177, 0.4, 0.5, true),
       new LowerIntake(),
       new DriveAndSpinIntake(3 * ((AUTO_DRIVE_DIST + 12) / 4), AUTO_DRIVE_COLLECT_BALL_SPEED),
-      new TurnAngle(AUTO_TURN_ANGLE, 0.6, true),
-      new Wait(0.5, true),
-      new ToggleIdleMode(IdleMode.kCoast),
+      new MotorTurnAngle(177, 0.4, 0.5, true),
       new DriveDistance(AUTO_DRIVE_DIST, AUTO_DRIVE_COLLECT_BALL_SPEED, true),
       new ShootBallsHighTimed(),
       new DriveDistance(-AUTO_DRIVE_DIST, AUTO_DRIVE_CROSS_LINE_SPEED, true)
@@ -67,3 +63,13 @@ public class ShootTwiceAndCrossLine extends SequentialCommandGroup {
     TestingDashboard.getInstance().registerCommand(auto, "AutoSequence", cmd);
   }
 }
+
+// Practice Match 4/6/22: 8:46 PM
+
+//Auto:  backup + 1 high (6pts)
+// TP:  11 high (22pts)
+// CP: trvsl (15pts)
+
+// Notes:  12-13 secs to spare
+
+// total: 43pts.
